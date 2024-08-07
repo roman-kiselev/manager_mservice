@@ -4,8 +4,8 @@ import { TransportCompanyController } from './transport-company.controller';
 import { TransportCompanyService } from './transport-company.service';
 
 @Module({
-  providers: [TransportCompanyService],
-  controllers: [TransportCompanyController],
-  imports: [DatabaseModule],
+    providers: [TransportCompanyService],
+    controllers: [TransportCompanyController],
+    imports: [DatabaseModule],
 })
 export class TransportCompanyModule {}

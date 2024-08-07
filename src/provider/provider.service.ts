@@ -66,32 +66,29 @@ export class ProviderService {
 
             if (dto.transportCompanyId && dto.transportCompanyDefault) {
                 for (const item of dto.transportCompanyId) {
-                    const dataTk =
-                        await this.clientDatabase.transportCompanyToProvider.create(
-                            {
-                                data: {
-                                    providersId: data.id,
-                                    transportCompanyId: item,
-                                    default:
-                                        dto.transportCompanyDefault === item,
-                                },
+                    await this.clientDatabase.transportCompanyToProvider.create(
+                        {
+                            data: {
+                                providersId: data.id,
+                                transportCompanyId: item,
+                                default: dto.transportCompanyDefault === item,
                             },
-                        );
+                        },
+                    );
                 }
             }
             if (dto.transportCompanyId && !dto.transportCompanyDefault) {
                 const arrData = dto.transportCompanyId;
                 for (const item of dto.transportCompanyId) {
-                    const dataTk =
-                        await this.clientDatabase.transportCompanyToProvider.create(
-                            {
-                                data: {
-                                    providersId: data.id,
-                                    transportCompanyId: item,
-                                    default: arrData[0] === item,
-                                },
+                    await this.clientDatabase.transportCompanyToProvider.create(
+                        {
+                            data: {
+                                providersId: data.id,
+                                transportCompanyId: item,
+                                default: arrData[0] === item,
                             },
-                        );
+                        },
+                    );
                 }
             }
 
@@ -199,16 +196,5 @@ export class ProviderService {
         }
     }
 
-    async updateOneById() {
-        try {
-        } catch (e) {
-            if (e instanceof HttpException) {
-                throw e;
-            }
-            throw new HttpException(
-                'Ошибка сервера',
-                HttpStatus.INTERNAL_SERVER_ERROR,
-            );
-        }
-    }
+    async updateOneById() {}
 }

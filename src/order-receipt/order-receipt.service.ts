@@ -65,8 +65,7 @@ export class OrderReceiptService {
                     providerId: emptyId,
                 });
 
-                const dataCreateName =
-                    await this.orderReceiptName.createList(dataFinish);
+                await this.orderReceiptName.createList(dataFinish);
 
                 const dataForResponse = await this.getOne(data.id.toString());
                 return dataForResponse;
@@ -194,7 +193,7 @@ export class OrderReceiptService {
 
         const emptyId = await this.findedEmptyProvider();
 
-        const dataNames = await this.orderReceiptName.updateList(
+        await this.orderReceiptName.updateList(
             result.setOrderIdAndProvider({
                 orderReceiptId: id,
                 providerId: emptyId,
@@ -214,7 +213,7 @@ export class OrderReceiptService {
         };
     }
 
-    async addRowAndUpdate(id: number) {}
+    async addRowAndUpdate() {}
 
     async getAllActive() {
         return this.clientDatabase.orderReceipt.findMany({
@@ -226,5 +225,5 @@ export class OrderReceiptService {
         });
     }
 
-    async delete(dto: any) {}
+    async delete() {}
 }

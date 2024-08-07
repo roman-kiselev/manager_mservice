@@ -54,7 +54,6 @@ export class ProviderController {
     @ApiResponse({ status: HttpStatus.BAD_REQUEST, type: HttpException })
     @Post('/with-tk')
     createProviderWithTransportCompany(@Body() dto: CreateProviderWithTk) {
-        
         return this.providerService.createProviderWithTransportCompany(dto);
     }
 }

@@ -2,7 +2,7 @@ import { CreateOrderReceiptDto } from 'src/order-receipt/dto/create-order-receip
 import { IOrderReceiptCreateName } from '../order-receipt-name/IOrderReceiptCreateName';
 
 export interface IOrderCreateWithNames
-  extends Omit<CreateOrderReceiptDto, 'orderReceiptNames'> {
-  names: IOrderReceiptCreateName[];
-  state: boolean;
+    extends Omit<CreateOrderReceiptDto, 'orderReceiptNames'> {
+    names: IOrderReceiptCreateName[];
+    state: boolean;
 }

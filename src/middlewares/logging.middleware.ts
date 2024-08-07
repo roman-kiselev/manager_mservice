@@ -7,7 +7,6 @@ export class LoggingMiddleware implements NestMiddleware {
 
     constructor() {}
     use(req: Request, res: Response, next: NextFunction) {
-        const { method, originalUrl: url } = req;
         const reqTime = new Date().getTime();
         // req.on('close', () => {
         //     console.log('ReqClose - 1');
