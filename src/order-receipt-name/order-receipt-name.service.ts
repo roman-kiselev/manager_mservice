@@ -97,7 +97,7 @@ export class OrderReceiptNameService {
     }
 
     async updateOneItem(dto: CreateOrderReceiptNameDto) {
-        const data = await this.clientDatabase.orderReceiptName.update({
+        await this.clientDatabase.orderReceiptName.update({
             where: {
                 id: dto.id,
             },
@@ -123,7 +123,7 @@ export class OrderReceiptNameService {
         const dataForDel = data.map((item) => item.id);
 
         if (dataForDel.length > 0) {
-            const dataFinish = Promise.all(
+            Promise.all(
                 dataForDel.map(async (itemId) => {
                     await this.clientDatabase.orderReceiptName.delete({
                         where: {
@@ -213,11 +213,7 @@ export class OrderReceiptNameService {
         const updatePromise = this.updateCurrentList(dataForUpdate);
         const delPromise = this.deleteItemsInCurrentList(dataForDelete);
 
-        const [add, update, del] = await Promise.allSettled([
-            addPromise,
-            updatePromise,
-            delPromise,
-        ]);
+        await Promise.allSettled([addPromise, updatePromise, delPromise]);
 
         return this.clientDatabase.orderReceiptName.findMany({
             where: {

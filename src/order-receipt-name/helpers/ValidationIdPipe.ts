@@ -1,4 +1,4 @@
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
+import { Injectable, PipeTransform } from '@nestjs/common';
 import { DatabaseService } from 'src/database/database.service';
 import { CreateOrderReceiptNameDto } from '../dto/create-order-receipt-name.dto';
 
@@ -8,16 +8,16 @@ export class ValidationIdPipe
         PipeTransform<CreateOrderReceiptNameDto, CreateOrderReceiptNameDto>
 {
     constructor(private client: DatabaseService) {}
-    transform(value: CreateOrderReceiptNameDto, metadata: ArgumentMetadata) {
+    transform(value: CreateOrderReceiptNameDto) {
         const { providerId, nameWorkId, orderReceiptId } = value;
         let idForProvider = 0;
 
         if (providerId === 0) {
-            const id = this.checkProviderId(providerId).then((data) => {
+            this.checkProviderId(providerId).then((data) => {
                 idForProvider = data;
             });
         }
-        const findedItem = console.log(providerId, nameWorkId, orderReceiptId);
+        console.log(providerId, nameWorkId, orderReceiptId);
         return {
             ...value,
             providerId: idForProvider,

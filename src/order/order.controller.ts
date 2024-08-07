@@ -5,16 +5,18 @@ import { OrderService } from './order.service';
 
 @Controller('order')
 export class OrderController {
-  constructor(
-    private readonly orderService: OrderService,
-    @Inject('ORDER_SERVICE') private readonly client: ClientProxy,
-  ) {}
+    constructor(
+        private readonly orderService: OrderService,
+        @Inject('ORDER_SERVICE') private readonly client: ClientProxy,
+    ) {}
 
-  @Get('/')
-  async getAll() {
-    const response = await firstValueFrom(this.client.send('hello', 'query'));
+    @Get('/')
+    async getAll() {
+        const response = await firstValueFrom(
+            this.client.send('hello', 'query'),
+        );
 
-    // console.log(response);
-    return JSON.parse(response);
-  }
+        // console.log(response);
+        return JSON.parse(response);
+    }
 }

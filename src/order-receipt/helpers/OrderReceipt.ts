@@ -1,9 +1,9 @@
 class OrderReceipt<T> {
-  constructor(private dto: T) {}
+    constructor(private dto: T) {}
 
-  protected getDto() {
-    return this.dto;
-  }
+    protected getDto() {
+        return this.dto;
+    }
 }
 
 export default OrderReceipt;
