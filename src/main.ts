@@ -8,11 +8,14 @@ import { HttpExceptionFilter } from './exception-filters/http.exception-filter';
 async function bootstrap() {
     const PORT = process.env.PORT || 4001;
     const app = await NestFactory.create(AppModule);
-    app.enableCors();
+    app.enableCors({
+        origin: 'http://192.168.3.60:3000',
+        credentials: true,
+    });
     app.connectMicroservice<MicroserviceOptions>({
         transport: Transport.RMQ,
         options: {
-            urls: ['amqp://localhost:5672'],
+            urls: [`${process.env.RABBIT_LINK}`],
             queue: 'manager_queue',
             queueOptions: {
                 durable: true,
