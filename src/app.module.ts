@@ -36,7 +36,7 @@ import { UserModule } from './user/user.module';
                     name: 'IAM_SERVICE',
                     transport: Transport.RMQ,
                     options: {
-                        urls: ['amqp://localhost:5672'],
+                        urls: [`${process.env.RABBIT_LINK}`],
                         queue: 'iam_queue',
                         queueOptions: {
                             durable: true,
